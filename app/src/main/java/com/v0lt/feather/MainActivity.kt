@@ -81,9 +81,9 @@ class MainActivity : ComponentActivity() {
                 val healthbox_url_stored = store.getHealthboxUrl.collectAsState(initial = "")
                 val healthbox_service_stored = store.getHealthboxService.collectAsState(initial = "")
 
-                var response_text = remember {
-                    mutableStateOf("")
-                }
+                var emotion_is_selected = remember { mutableStateOf(false) }
+                var selected_emotion = remember { mutableStateOf(-1000) }
+                var response_text = remember { mutableStateOf("") }
                 Scaffold(
                     modifier = Modifier
                         .fillMaxSize()
@@ -93,7 +93,7 @@ class MainActivity : ComponentActivity() {
                             startActivity(intent) },
                         shape = CircleShape,
                         modifier = Modifier
-                            .padding(vertical = 40.dp)
+                            .padding(vertical = 40.dp, horizontal = 10.dp)
                     ) {
                         Icon(
                             Icons.Filled.Settings,
@@ -122,15 +122,23 @@ class MainActivity : ComponentActivity() {
                         )
 
                         for (index in 0 .. mood_options.size - 1) {
-                            Button(onClick = { SubmitEmotion(response_text, mood_values[index], healthbox_url_stored.value, healthbox_service_stored.value) }) {
+                            Button(onClick = {
+                                selected_emotion.value = index
+                                emotion_is_selected.value = true
+                                response_text.value = mood_options[index]
+                            }) {
                                 Text(mood_options[index])
                             }
                         }
                         Text(
-                            text = response_text.value.toString(),
+                            text = response_text.value,
                             modifier = Modifier
                                 .padding(top = 20.dp)
                         )
+
+                        Button(enabled = emotion_is_selected.value, onClick = { SubmitEmotion(response_text, mood_values[selected_emotion.value], healthbox_url_stored.value, healthbox_service_stored.value) }) {
+                            Text(text = "Submit")
+                        }
                     }
                 }
             }
@@ -153,7 +161,7 @@ class MainActivity : ComponentActivity() {
                 } else if (healthbox_response.has("success")) {
                         response_text.value = "Success"
                 } else {
-                    response_text.value = response["error"].toString()
+                    response_text.value = "Unknown error"
                 }
             },
             { error -> response_text.value = "Application Error: $error.toString()" }

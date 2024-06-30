@@ -60,7 +60,7 @@ class Configuration : AppCompatActivity() {
                     Button(
                         onClick = { this.finish() },
                         modifier = Modifier
-                            .padding(vertical = 40.dp)
+                            .padding(vertical = 40.dp, horizontal = 10.dp)
                     ) {
                         Text("Back")
                     }

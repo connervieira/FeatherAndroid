@@ -1,6 +1,6 @@
 # Feather
 
-Mental well-being is a very important, yet often overlooked aspect of health. Mood patterns can be affected by any number of things, but sometimes it's hard to narrow down what specifically effects your emotional state the most. Feather makes it extremely quick and easy to track your mood over time using a simple negative-to-positive rating scale. After the initial setup, Feather allows you to log moods to [HealthBox](https://v0lttech.com/healthbox.php) with just a single button press. Understanding your mood trends is the first step in identifying positive and negative influences on your mental health.
+Mental well-being is a very important, yet often overlooked aspect of health. Mood patterns can be affected by any number of things, but sometimes it's hard to narrow down what specifically effects your emotional state the most. Feather makes it extremely quick and easy to track your mood over time using a simple negative-to-positive rating scale. After the initial setup, Feather allows you to log moods to [HealthBox](https://v0lttech.com/healthbox.php) with just two button presses. Understanding your mood trends is the first step in identifying positive and negative influences on your mental health.
 
 ## Features
 
