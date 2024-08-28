@@ -16,6 +16,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
@@ -69,7 +71,7 @@ class UserStore(private val context: Context) {
 }
 
 class MainActivity : ComponentActivity() {
-    val mood_options = arrayOf("Depressed", "Sad", "Upset", "Bored", "Neutral", "Content", "Pleased", "Happy", "Ecstatic")
+    val mood_options = arrayOf("Depressed", "Sad", "Upset", "Uncomfortable", "Neutral", "Content", "Pleased", "Happy", "Ecstatic")
     val mood_values = arrayOf(-4, -3, -2, -1, 0, 1, 2, 3, 4)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,10 +86,9 @@ class MainActivity : ComponentActivity() {
                 var emotion_is_selected = remember { mutableStateOf(false) }
                 var selected_emotion = remember { mutableStateOf(-1000) }
                 var response_text = remember { mutableStateOf("") }
-                Scaffold(
-                    modifier = Modifier
-                        .fillMaxSize()
-                ) { innerPadding ->
+                Surface(
+                    color = MaterialTheme.colorScheme.background,
+                ) {
                     Button(
                         onClick = { val intent = Intent(this, Configuration::class.java)
                             startActivity(intent) },
